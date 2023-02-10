@@ -14,7 +14,7 @@ class KeyboardController extends Controller
      */
     public function index()
     {
-        //
+        return "Hello";
     }
 
     /**
