@@ -1,6 +1,10 @@
-I was looking for a solution for this problem for the past two days, ended up finding it on a excruciating 15 minute YouTube video that unbelievably actually got it right.
+# Keyfigurator
 
-SSH into the container with sail shell or use the Docker container terminal directly from its dashboard;
-Run chown -R sail:sail storage;
-Problem solved.
-This is because the user sail has the same UID of 1000 as your actual Linux user, which owns the directory storage in your host machine.
+This is the back-end for Archetype's Configurator.
+
+## Installation
+
+This back-end uses Laravel, via Sail.
+
+1. Start Docker Desktop after installing it from the website.
+2. Run `./vendor/bin/sail up` to spin up Laravel Sail. It does not use all of the associated images (such as Meilisearch), but they were left on and enabled for simplicity.
