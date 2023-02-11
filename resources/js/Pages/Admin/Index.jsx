@@ -7,6 +7,7 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import InputError from "@/Components/InputError";
 
 import { useForm, router as InertiaRouter } from "@inertiajs/react";
+import { without } from "lodash";
 
 const DELIMITER_TOKEN = "|||";
 
@@ -74,6 +75,18 @@ const unifyKeyboardSizeTerminology = (object) => {
     return withUnifiedValues;
 };
 
+const removeMetadata = (object) => {
+    const withoutMetadata = { ...object };
+    delete withoutMetadata["_type"];
+    return withoutMetadata;
+};
+
+const removeCurrencySymbol = (object) => {
+    const withoutCurrencySymbol = { ...object };
+    withoutCurrencySymbol.price = object.price.replace("$", "");
+    return withoutCurrencySymbol;
+};
+
 const transformProduct = (product) => {
     const newProduct = { ...product };
 
@@ -87,6 +100,8 @@ const transformProduct = (product) => {
         (product) => convertYesNoToBoolean(product, ["hotswappable"]),
         (product) => nullifyNullishStrings(product),
         (product) => unifyKeyboardSizeTerminology(product),
+        (product) => removeMetadata(product),
+        (product) => removeCurrencySymbol(product),
     ];
 
     return transformations.reduce(
@@ -114,7 +129,6 @@ const AdminIndex = ({ auth, errors, uploadedState, uploadedData }) => {
         const productData = JSON.parse(fileText);
         const transformedProductData = productData.map(transformProduct);
         return { data: transformedProductData };
-        return transformedProductData;
     };
 
     const submit = async (e) => {

@@ -33,21 +33,10 @@ class KeyboardController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(array $keyboards)
     {
-        // 
     }
 
-    /**
-     * Stores a batch of newly created resources in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function batch_store(Request $request)
-    {
-        // 
-    }
 
     /**
      * Display the specified resource.
