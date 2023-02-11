@@ -14,7 +14,7 @@ class KeyboardController extends Controller
      */
     public function index()
     {
-        return "Hello";
+        return 'Hello';
     }
 
     /**
@@ -35,7 +35,18 @@ class KeyboardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
+    }
+
+    /**
+     * Stores a batch of newly created resources in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function batch_store(Request $request)
+    {
+        // 
     }
 
     /**

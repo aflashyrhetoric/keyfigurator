@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KeyboardController;
-
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +17,32 @@ use Inertia\Inertia;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// ************************
+// Application Logic Routes
+// ************************
+
+Route::resource('keyboards', KeyboardController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']);
+
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name("admin.index");
+
+
+Route::post('/admin', [AdminController::class, 'batch'])
+    ->middleware(['auth', 'verified'])
+    ->name("admin.batch");
+
+// ************************
+// ************************
+// ************************
+// ***Boilerplate Stuff****
+// ***VVVVVVVVVVVVVVVVV****
+// ************************
+// ************************
+// ************************
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -37,10 +63,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Application Logic Routes
 
-Route::resource('keyboards', KeyboardController::class)
-    ->only(['index', 'store'])
-    ->middleware(['auth', 'verified']);
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
