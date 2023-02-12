@@ -7,8 +7,8 @@ This is the back-end for Archetype's Configurator.
 This back-end uses Laravel, via Sail.
 
 1. (Optionally, if you don't have Docker installed) Start Docker Desktop after installing it from the website.
-2. Run `./vendor/bin/sail up` to spin up Laravel Sail. 
-   - Keyfigurator does not use all of the associated images (such as Meilisearch), but they were left on and enabled for simplicity.
+2. Run `./vendor/bin/sail up` to spin up Laravel Sail.
+    - Keyfigurator does not use all of the associated images (such as Meilisearch), but they were left on and enabled for simplicity.
 3. Ensure that you have an `.env` file with values. `cp .env.example .env` to get defaults.
 4. `php artisan key:generate` to generate the Laravel app key.
 5. `npm install` to install front-end dependencies.
@@ -24,3 +24,7 @@ To run `artisan` commands that interact with the database (such as `php artisan 
 
 1. `./vendor/bin/sail shell`
 2. `php artisan db:migrate`, etc
+
+## Issues compiling assets?
+
+-   Check `tailwind.config.js`, and ensure that things are configured properly.

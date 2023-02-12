@@ -3,11 +3,11 @@
         "jsx": "react-jsx",
         "baseUrl": ".",
         "esModuleInterop": true,
-        "moduleResolution": "nodenext",
+        // "moduleResolution": "nodenext",
         "paths": {
             "src/*": ["src/*"],
             "src/utils/*": ["src/utils/*"],
-            "views": ["views/*"],
+            "views/*": ["views/*"],
             "types/*": ["types/*"],
             "types/views": ["types/views.ts"],
             "templates/*": ["templates/*"],

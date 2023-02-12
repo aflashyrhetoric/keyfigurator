@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import react from "@vitejs/plugin-react";
 
-const path = require('path')
+const path = require("path");
 
 export default defineConfig({
     plugins: [
@@ -12,9 +12,11 @@ export default defineConfig({
         }),
         react(),
     ],
-   resolve: {
-    alias: {
-        "types/views": path.resolve(__dirname, "types","views.ts")
-    }
-   }
+    resolve: {
+        alias: {
+            views: path.resolve(__dirname, "views"),
+            src: path.resolve(__dirname, "src"),
+            "types/views": path.resolve(__dirname, "types", "views.ts"),
+        },
+    },
 });

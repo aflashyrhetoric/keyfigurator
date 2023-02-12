@@ -1,9 +1,11 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
+
 use Inertia\Inertia;
-use App\Models\Build;
 use Illuminate\Http\Request;
+use App\Models\Build;
+use App\Models\Keyboard;
 
 class BuildController extends Controller
 {
@@ -15,7 +17,7 @@ class BuildController extends Controller
     public function index()
     {
         return Inertia::render('Keys/Configurator/Index', [
-            "uploadedState" => "chicken"
+            "products" => Keyboard::all(),
         ]);
     }
 
