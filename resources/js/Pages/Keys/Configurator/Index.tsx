@@ -4,9 +4,11 @@ import { Keyboard } from "types/keyboard";
 import KeyboardPicker from "views/KeyboardPicker";
 // import SwitchPicker from "views/SwitchPicker";
 import { View } from "types/views";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Head } from "@inertiajs/react";
 // import { applyPreferenceFilter } from "src/shared/products";
 
-export default function Configurator({ products }) {
+export default function Configurator({ products, auth, errors }) {
     const [activeView, setActiveView] = useState(View.KeyboardPicker);
 
     const sharedProps = {
@@ -22,6 +24,18 @@ export default function Configurator({ products }) {
         // [View.KeycapPicker]: <KeyboardPicker products={products} />,
     };
 
-    // return <>{JSON.stringify(products, null, 2)}</>;
-    return <>{viewMap[activeView]}</>;
+    return (
+        <AuthenticatedLayout
+            auth={auth}
+            errors={errors}
+            header={
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                    Configurator
+                </h2>
+            }
+        >
+            <Head title="Dashboard" />
+            {viewMap[activeView]}
+        </AuthenticatedLayout>
+    );
 }

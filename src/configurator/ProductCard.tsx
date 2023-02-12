@@ -23,14 +23,16 @@ const ProductCard: React.FC<Props> = ({ product, onClick }: Props) => {
     } = product;
 
     const imgSrc = imgPath(img_path);
+   
+    const test = true
 
     return (
         <div className="max-w-sm">
             <Card
-                className="max-w-full"
-                imgSrc={"https://place-hold.it/405x215"}
+                className="max-w-full min-h-full"
+                imgSrc={test ? "https://place-hold.it/405x215": imgSrc}
             >
-                <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                <h5 className="text-2xl font-bold text-lg tracking-tight text-gray-900 dark:text-white">
                     {brand} - {product_name}
                 </h5>
                 <p className="font-normal block max-w-full text-gray-700 dark:text-gray-400">
