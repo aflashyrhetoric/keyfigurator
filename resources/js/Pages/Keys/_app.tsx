@@ -1,5 +1,3 @@
-import React from "react"
-
 // Redux stuff
 import store from "src/store"
 import { Provider } from "react-redux"

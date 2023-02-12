@@ -1,0 +1,184 @@
+// html,
+// body {
+//   padding: 0;
+//   margin: 0;
+// font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+// Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+// }
+
+// a {
+//   color: inherit;
+//   text-decoration: none;
+// }
+
+$breakpoints: (
+  "xsmall": 475px,
+  "xs": 475px,
+  "small": 767px,
+  "sm": 767px,
+  "medium": 992px,
+  "md": 992px,
+  "large": 1280px,
+  "lg": 1280px,
+  "xlarge": 1440px,
+  "xl": 1440px,
+  "xxlarge": 1600px,
+  "xxl": 1600px,
+) !default;
+
+@mixin bp($breakpoint) {
+  @include breakpoint($breakpoint) {
+    @content;
+  }
+}
+
+@mixin breakpoint($breakpoint) {
+  // If the key exists in the map
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Prints a media query based on the value
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  // If the key doesn't exist in the map
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+// helper classes
+// ==============
+// font-size
+// @mixin fz($size) {
+//   $size-rem: rem-calc($size);
+//   font-size: #{$size}px;
+//   font-size: #{$size-rem};
+// }
+
+// utilities
+// =========
+@mixin hma() {
+  margin: {
+    left: auto;
+    right: auto;
+  }
+}
+
+@mixin h-p($p) {
+  padding: {
+    left: #{$p}px;
+    right: #{$p}px;
+  }
+}
+
+@mixin v-p($p) {
+  padding: {
+    top: #{$p}px;
+    bottom: #{$p}px;
+  }
+}
+
+@mixin h-m($p) {
+  margin: {
+    left: #{$p}px;
+    right: #{$p}px;
+  }
+}
+
+// For restoring only bottom margin
+@mixin only-margin-bottom($margin) {
+  margin: {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: $margin;
+  }
+}
+
+// For creating arrows easily
+@mixin arrow-up($size, $color) {
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 1200;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid $color;
+}
+
+// clearfix
+@mixin clearfix {
+  &:after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+// Hides on mobile (good for images)
+@mixin hide-on-mobile($flex) {
+  display: none;
+  @include breakpoint(medium) {
+    @if $flex == true {
+      display: flex;
+    } @else {
+      display: block;
+    }
+  }
+}
+
+// @mixin gradient($style: watermelon) {
+//   @if $style != "professional" {
+//     background: linear-gradient(to bottom, #deffd3, #ffcece);
+//   } @else {
+//     background: linear-gradient(to bottom, #deffd3, #ffcece);
+//   }
+// }
+
+// @mixin light-gradient() {
+//   background: linear-gradient(
+//     to bottom,
+//     lighten(#deffd3, 5),
+//     lighten(#ffcece, 5)
+//   );
+// }
+
+@mixin general-ui {
+  background: white;
+  padding: 0.5rem;
+  padding: {
+    left: 2rem;
+    right: 2rem;
+  }
+  border-radius: 3px;
+}
+
+@mixin invert-checkbox {
+  &:global(.bx--checkbox-label) {
+    &::before {
+      border-color: white;
+    }
+  }
+}
+
+main {
+  .bx--modal-container {
+    width: 80% !important;
+  }
+  .bx--modal-header {
+    margin-bottom: 1.5rem;
+  }
+  .bx--modal-content {
+    padding-right: 1rem !important;
+    margin-bottom: 35px;
+  }
+  .bx--header-panel--expanded {
+    overflow-y: scroll;
+  }
+  .bx--list-box__wrapper,
+  .bx--text-input-wrapper {
+    margin-bottom: 1rem;
+  }
+}

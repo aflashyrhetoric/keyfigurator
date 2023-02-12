@@ -1,0 +1,11 @@
+@import "./globals.scss";
+
+.modal {
+  :global(.bx--modal-container--lg) {
+    height: 85vh;
+  }
+
+  :global(.bx--modal-content) {
+    width: 100%;
+  }
+}

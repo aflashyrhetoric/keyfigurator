@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Products from "./products.json";
 import { Head } from "@inertiajs/react";
 

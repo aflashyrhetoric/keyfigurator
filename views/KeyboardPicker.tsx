@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { Modal } from "carbon-components-react"
 import ProductCard from "src/configurator/ProductCard"
 import PageContent from "templates/page-content"
@@ -11,12 +11,6 @@ import { setPrefFrameColor } from "src/store/slices/frameColorSlice"
 import { togglePrefBacklighting } from "src/store/slices/keyboardBacklightingSlice"
 import { togglePrefSwitch } from "src/store/slices/switchSlice"
 
-import Input from "@material-ui/core/Input"
-import InputLabel from "@material-ui/core/InputLabel"
-import MenuItem from "@material-ui/core/MenuItem"
-import Select from "@material-ui/core/Select"
-import Chip from "@material-ui/core/Chip"
-
 import cStyles from "../styles/Configurator.module.scss"
 import ProductModalInfo from "src/configurator/ProductModalInfo"
 import UIShellPage from "templates/page-uishell"
@@ -25,7 +19,7 @@ import { PickerProps } from "types/app"
 import { userPreferencesToTags } from "src/shared/products"
 import { useDispatch } from "react-redux"
 
-const KeyboardPicker: React.FC<PickerProps> = ({
+const KeyboardPicker = ({
   products,
   navigate,
   prefs,

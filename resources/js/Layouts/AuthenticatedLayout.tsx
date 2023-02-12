@@ -30,9 +30,15 @@ export default function Authenticated({ auth, header, children }) {
                                 </NavLink>
                                 <NavLink
                                     href={route("admin.batch")}
-                                    active={route().current("chirps.index")}
+                                    active={route().current("admin.index")}
                                 >
-                                    Chirps
+                                    Admin
+                                </NavLink>
+                                <NavLink
+                                    href={route("builds.index")}
+                                    active={route().current("builds.index")}
+                                >
+                                    Configurator
                                 </NavLink>
                             </div>
                         </div>
