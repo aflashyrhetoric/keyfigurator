@@ -41,29 +41,21 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
     // return "hi";
 
     return (
-        <>
-            <div
-                style={{
-                    display: "flex",
-                    flexFlow: "row wrap",
-                    justifyContent: "flex-start",
-                }}
-            >
-                {products.length === 0 && "Select a size to get started"}
-                {products &&
-                    products.map((p) => (
-                        <ProductCard
-                            key={p.full_title}
-                            product={p}
-                            onClick={() => {}}
-                            // onClick={() => {
-                            //     setHighlightedProduct(p);
-                            //     setModalOpen(true);
-                            // }}
-                        />
-                    ))}
-            </div>
-        </>
+        <div className="flex flex-row flex-wrap">
+            {products.length === 0 && "Select a size to get started"}
+            {products &&
+                products.map((p) => (
+                    <ProductCard
+                        key={p.full_title}
+                        product={p}
+                        onClick={() => {}}
+                        // onClick={() => {
+                        //     setHighlightedProduct(p);
+                        //     setModalOpen(true);
+                        // }}
+                    />
+                ))}
+        </div>
     );
 };
 
