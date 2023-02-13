@@ -2,6 +2,7 @@
     "compilerOptions": {
         "jsx": "react-jsx",
         "baseUrl": ".",
+        "lib": ["dom", "esnext"],
         "esModuleInterop": true,
         // "moduleResolution": "nodenext",
         "paths": {

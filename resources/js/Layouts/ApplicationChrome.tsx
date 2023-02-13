@@ -1,12 +1,110 @@
 import SidebarItem from "@/Components/SidebarItem";
+import SidebarParameter from "@/Components/SidebarParameter";
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPrefFrameColor } from "src/store/slices/frameColorSlice";
+import { togglePrefInterface } from "src/store/slices/interfaceSlice";
+import { togglePrefBacklighting } from "src/store/slices/keyboardBacklightingSlice";
+import { setPrefSize } from "src/store/slices/sizeSlice";
+import {
+    KeyboardBacklightingTypes,
+    KeyboardFrameColors,
+    KeyboardInterfaces,
+    KeyboardSizes,
+} from "types/keyboard";
+import { View } from "types/views";
 
 // interface Props {
 //  something: string;
 // }
 
 const ApplicationChrome = (props) => {
-    // const [something, setSomething] = useState(props.something);
+    const { activePanel } = props;
+
+    const {
+        size: preferredSizes,
+        compatible_oses,
+        interfaces: preferredInterfaces,
+        frame_color,
+        primary_led_color,
+        switch_type,
+    } = useSelector((state) => state.preferences);
+
+    console.log({ preferredInterfaces });
+
+    const activePanelToSidebarItems = {
+        [View.KeyboardPicker]: (
+            <SidebarItem
+                text="Keyboard"
+                href={route("builds.index")}
+                svgIcon={
+                    <svg
+                        aria-hidden="true"
+                        className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                    </svg>
+                }
+            />
+        ),
+        [View.KeycapPicker]: (
+            <SidebarItem
+                text="Keycaps"
+                svgIcon={
+                    <svg
+                        aria-hidden="true"
+                        className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                    </svg>
+                }
+            />
+        ),
+        [View.SwitchPicker]: (
+            <SidebarItem
+                svgIcon={
+                    <svg
+                        aria-hidden="true"
+                        className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                        <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                    </svg>
+                }
+                text="Base Switch"
+            />
+        ),
+    };
+
+    // Append "all" option to the map
+    activePanelToSidebarItems[View.All] = (
+        <>
+            {activePanelToSidebarItems[View.KeyboardPicker]}
+            {activePanelToSidebarItems[View.KeycapPicker]}
+            {activePanelToSidebarItems[View.SwitchPicker]}
+        </>
+    );
+
+    const dispatch = useDispatch();
+
+    const isAllView = activePanel === View.All;
+
+    const label = `Base Keyboard${isAllView ? "" : `: ${activePanel}`}`;
+
+    const headingClass = isAllView
+        ? "font-bold mb-3"
+        : "font-bold pb-2 mb-3 border-b-2 border-gray-200 dark:border-gray-700";
 
     return (
         <>
@@ -129,72 +227,45 @@ const ApplicationChrome = (props) => {
                 aria-label="Sidebar"
             >
                 <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
-                    <p className="font-bold mb-3">Base Keyboard</p>
+                    <p className={headingClass}>{label}</p>
                     <ul className="space-y-2">
-                        <SidebarItem
-                            text="Keyboard"
-                            href={route("builds.index")}
-                            svgIcon={
-                                <svg
-                                    aria-hidden="true"
-                                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                                </svg>
-                            }
-                        />
-                        <SidebarItem
-                            svgIcon={
-                                <svg
-                                    aria-hidden="true"
-                                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                                </svg>
-                            }
-                            text="Base Switch"
-                        />
-                        <SidebarItem
-                            text="Keycaps"
-                            svgIcon={
-                                <svg
-                                    aria-hidden="true"
-                                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                                </svg>
-                            }
-                        />
+                        {activePanelToSidebarItems[activePanel]}
                     </ul>
-                    <p className="font-bold my-3">Extras</p>
-                    <ul className="space-y-2">
-                        <SidebarItem
-                            text="Keycaps"
-                            svgIcon={
-                                <svg
-                                    aria-hidden="true"
-                                    className="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                                    fill="currentColor"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                                </svg>
-                            }
+
+                    <div className="flex flex-col p-2 border-b-2">
+                        <SidebarParameter
+                            parameterName="sizes"
+                            options={KeyboardSizes}
+                            dispatchFn={setPrefSize}
+                            isChecked={(size) => preferredSizes.includes(size)}
+                            key="sidebar-parameter-sizes"
                         />
+                        <SidebarParameter
+                            parameterName="frame color"
+                            options={KeyboardFrameColors}
+                            dispatchFn={setPrefFrameColor}
+                            isChecked={(color) => frame_color === color}
+                            key="sidebar-parameter-colors"
+                        />
+                        <SidebarParameter
+                            parameterName="interfaces"
+                            options={KeyboardInterfaces}
+                            dispatchFn={togglePrefInterface}
+                            isChecked={(i) => preferredInterfaces.includes(i)}
+                            key="sidebar-parameter-interface"
+                        />
+                        <SidebarParameter
+                            parameterName="lighting"
+                            options={KeyboardBacklightingTypes}
+                            dispatchFn={togglePrefBacklighting}
+                            isChecked={(light) =>
+                                primary_led_color.includes(light)
+                            }
+                            key="sidebar-parameter-lighting"
+                        />
+                    </div>
+                    {/* <p className="font-bold my-3">Extras</p>
+                    <ul className="space-y-2">
                         <SidebarItem
                             text="Switches"
                             svgIcon={
@@ -228,7 +299,7 @@ const ApplicationChrome = (props) => {
                                 </svg>
                             }
                         />
-                    </ul>
+                    </ul> */}
                 </div>
             </aside>
         </>

@@ -28,10 +28,10 @@ const ProductCard: React.FC<Props> = ({ product, onClick }: Props) => {
 
     return (
         <div className="max-w-sm">
-            <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <div className="max-w-sm bg-white border border-gray-200 hover:shadow dark:bg-gray-800 dark:border-gray-700 hover:border-purple-400 hover:cursor-pointer">
                 <a href="#">
                     <img
-                        className="rounded-t-lg aspect-video"
+                        className="aspect-video"
                         src={test ? "https://place-hold.it/405x215" : imgSrc}
                         alt=""
                     />

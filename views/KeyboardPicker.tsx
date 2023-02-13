@@ -18,7 +18,7 @@ import { PickerProps } from "types/app";
 import { userPreferencesToTags } from "src/shared/products";
 import { useDispatch, useSelector } from "react-redux";
 
-const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
+const KeyboardPicker = ({ products, navigate, prefs }: PickerProps) => {
     // const [highlightedProduct, setHighlightedProduct] =
     // useState<Keyboard>(null);
     // const productIsHighlighted = highlightedProduct !== null;
@@ -31,7 +31,7 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
         frame_color,
         primary_led_color,
         switch_type,
-    } = useSelector((state) => state.preferences);
+    } = prefs;
     const dispatch = useDispatch();
 
     // const resetState = () => {
@@ -42,65 +42,14 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
 
     return (
         <div>
-            <div className="flex p-4 border-b-2 sm:ml-64">
-                <div className="items-center justify-center min-h-1 px-2 border-r-2">
-                    <span className="text-xs font-bold mr-1">
-                        available switch types
-                    </span>
-                    <div className="flex">
-                        <div className="font-xs text-small-caps mr-2">
-                            <input className="mr-1" type="checkbox" />
-                            <span>linear</span>
-                        </div>
-                        <div className="font-xs text-small-caps mr-2">
-                            <input className="mr-1" type="checkbox" />
-                            <span>clicky</span>
-                        </div>
-                        <div className="font-xs text-small-caps">
-                            <input className="mr-1" type="checkbox" />
-                            <span>tactile</span>
-                        </div>
+            <div className="grid grid-cols-3 lg:grid-cols-6 gap-8 p-4 sm:ml-64">
+                {products.length === 0 && (
+                    <div className="flex items-center justify-center">
+                        <p className="font-italic">
+                            Select a size to get started
+                        </p>
                     </div>
-                </div>
-                <div className="items-center justify-center min-h-1 px-2 border-r-2">
-                    <span className="text-xs font-bold mr-1">colorways</span>
-                    <div className="flex">
-                        {KeyboardFrameColors.map((color) => (
-                            <div
-                                className="font-xs text-small-caps mr-2"
-                                key={`keyboard-frame-color-${color}-option`}
-                            >
-                                <input
-                                    onChange={() =>
-                                        dispatch(setPrefFrameColor(color))
-                                    }
-                                    checked={frame_color === color}
-                                    className="mr-1"
-                                    type="checkbox"
-                                />
-                                <span>{color}</span>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="items-center justify-center min-h-1 px-2 border-r-2">
-                    <span className="text-xs font-bold mr-1">
-                        connections / ports
-                    </span>
-                    <div className="flex">
-                        <div className="font-xs text-small-caps mr-2">
-                            <input className="mr-1" type="checkbox" />
-                            <span>wired + wireless</span>
-                        </div>
-                        <div className="font-xs text-small-caps mr-2">
-                            <input className="mr-1" type="checkbox" />
-                            <span>wired only</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="grid grid-cols-3 lg:grid-cols-4 gap-8 p-4 sm:ml-64">
-                {products.length === 0 && "Select a size to get started"}
+                )}
                 {products &&
                     products.map((p) => (
                         <ProductCard

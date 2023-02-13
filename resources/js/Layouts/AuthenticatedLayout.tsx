@@ -6,14 +6,13 @@ import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
 import ApplicationChrome from "./ApplicationChrome";
 
-export default function Authenticated({ auth, header, children,  }) {
+export default function Authenticated({ auth, header, children, activePanel }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
     return (
         <div className="min-h-screen bg-gray-100">
-
-            <ApplicationChrome />
+            <ApplicationChrome activePanel={activePanel} />
 
             <main className="pt-14">{children}</main>
         </div>
