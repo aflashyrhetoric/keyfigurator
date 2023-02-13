@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BuildController;
 use App\Http\Controllers\KeyboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
@@ -25,15 +26,19 @@ use Inertia\Inertia;
 Route::resource('keyboards', KeyboardController::class)
     ->only(['index', 'store'])
     ->middleware(['auth', 'verified']);
+    
+Route::resource('builds', BuildController::class)
+    ->only(['index', 'store'])
+    ->middleware(['auth', 'verified']);
 
 Route::get('/admin', [AdminController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name("admin.index");
 
-
 Route::post('/admin', [AdminController::class, 'batch'])
     ->middleware(['auth', 'verified'])
     ->name("admin.batch");
+   
 
 // ************************
 // ************************

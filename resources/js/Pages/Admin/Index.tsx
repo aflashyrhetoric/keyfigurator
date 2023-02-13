@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Products from "./products.json";
 import { Head } from "@inertiajs/react";
 
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedAdminLayout from "@/Layouts/AuthenticatedAdminLayout";
 import PrimaryButton from "@/Components/PrimaryButton";
 import InputError from "@/Components/InputError";
 
@@ -147,7 +147,7 @@ const AdminIndex = ({ auth, errors, uploadedState, uploadedData }) => {
     };
 
     return (
-        <AuthenticatedLayout
+        <AuthenticatedAdminLayout
             auth={auth}
             errors={errors}
             header={
@@ -156,7 +156,7 @@ const AdminIndex = ({ auth, errors, uploadedState, uploadedData }) => {
                 </h2>
             }
         >
-            <Head title="Dashboard" />
+            <Head title="Admin" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -207,7 +207,7 @@ const AdminIndex = ({ auth, errors, uploadedState, uploadedData }) => {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </AuthenticatedAdminLayout>
     );
 };
 

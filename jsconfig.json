@@ -1,8 +1,15 @@
 {
     "compilerOptions": {
+        "jsx": "react-jsx",
         "baseUrl": ".",
         "paths": {
-            "@/*": ["resources/js/*"]
+            "@/*": ["resources/js/*"],
+            "src/*": ["src/*"],
+            "src/utils/*": ["src/utils/*"],
+            "views": ["views/*"],
+            "templates/*": ["templates/*"],
+            "styles/*": ["styles/*.scss"],
+            "types/*": ["types/*"]
         }
     },
     "exclude": ["node_modules", "public"]

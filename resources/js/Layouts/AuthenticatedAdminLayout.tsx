@@ -4,8 +4,9 @@ import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
+import ApplicationChrome from "./ApplicationChrome";
 
-export default function Authenticated({ auth, header, children }) {
+export default function Authenticated({ auth, header, children,  }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
@@ -30,9 +31,15 @@ export default function Authenticated({ auth, header, children }) {
                                 </NavLink>
                                 <NavLink
                                     href={route("admin.batch")}
-                                    active={route().current("chirps.index")}
+                                    active={route().current("admin.index")}
                                 >
-                                    Chirps
+                                    Admin
+                                </NavLink>
+                                <NavLink
+                                    href={route("builds.index")}
+                                    active={route().current("builds.index")}
+                                >
+                                    Configurator
                                 </NavLink>
                             </div>
                         </div>
@@ -173,6 +180,8 @@ export default function Authenticated({ auth, header, children }) {
                     </div>
                 </header>
             )}
+
+            <ApplicationChrome />
 
             <main>{children}</main>
         </div>
