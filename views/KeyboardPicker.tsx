@@ -11,11 +11,12 @@ import { togglePrefSwitch } from "src/store/slices/switchSlice";
 
 // import cStyles from "../styles/Configurator.module.scss";
 // import ProductModalInfo from "src/configurator/ProductModalInfo";
+import { KeyboardFrameColors } from "types/keyboard";
 import UIShellPage from "templates/page-uishell";
 import KeyboardParameters from "src/configurator/parameters/KeyboardParameters";
 import { PickerProps } from "types/app";
 import { userPreferencesToTags } from "src/shared/products";
-// import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
     // const [highlightedProduct, setHighlightedProduct] =
@@ -23,14 +24,15 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
     // const productIsHighlighted = highlightedProduct !== null;
 
     // const [modalOpen, setModalOpen] = useState(false);
-
-    // const dispatch = useDispatch();
-
-    // const highlightedProductData = productIsHighlighted
-    //     ? products.find(
-    //           (p) => p.product_name === highlightedProduct.product_name
-    //       )
-    //     : null;
+    const {
+        size,
+        compatible_oses,
+        interfaces,
+        frame_color,
+        primary_led_color,
+        switch_type,
+    } = useSelector((state) => state.preferences);
+    const dispatch = useDispatch();
 
     // const resetState = () => {
     //     setHighlightedProduct(null);
@@ -63,18 +65,22 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
                 <div className="items-center justify-center min-h-1 px-2 border-r-2">
                     <span className="text-xs font-bold mr-1">colorways</span>
                     <div className="flex">
-                        <div className="font-xs text-small-caps mr-2">
-                            <input className="mr-1" type="checkbox" />
-                            <span>white</span>
-                        </div>
-                        <div className="font-xs text-small-caps mr-2">
-                            <input className="mr-1" type="checkbox" />
-                            <span>blue</span>
-                        </div>
-                        <div className="font-xs text-small-caps">
-                            <input className="mr-1" type="checkbox" />
-                            <span>purple</span>
-                        </div>
+                        {KeyboardFrameColors.map((color) => (
+                            <div
+                                className="font-xs text-small-caps mr-2"
+                                key={`keyboard-frame-color-${color}-option`}
+                            >
+                                <input
+                                    onChange={() =>
+                                        dispatch(setPrefFrameColor(color))
+                                    }
+                                    checked={frame_color === color}
+                                    className="mr-1"
+                                    type="checkbox"
+                                />
+                                <span>{color}</span>
+                            </div>
+                        ))}
                     </div>
                 </div>
                 <div className="items-center justify-center min-h-1 px-2 border-r-2">
@@ -93,7 +99,7 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-3 lg: grid-cols-4 gap-8 p-4 sm:ml-64">
+            <div className="grid grid-cols-3 lg:grid-cols-4 gap-8 p-4 sm:ml-64">
                 {products.length === 0 && "Select a size to get started"}
                 {products &&
                     products.map((p) => (

@@ -17,6 +17,7 @@ export default defineConfig({
             views: path.resolve(__dirname, "views"),
             src: path.resolve(__dirname, "src"),
             "types/views": path.resolve(__dirname, "types", "views.ts"),
+            "types/keyboard": path.resolve(__dirname, "types", "keyboard.ts"),
         },
     },
 });
