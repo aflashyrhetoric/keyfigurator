@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrefFrameColor } from "src/store/slices/frameColorSlice";
 import { togglePrefInterface } from "src/store/slices/interfaceSlice";
-import { togglePrefBacklighting } from "src/store/slices/keyboardBacklightingSlice";
+import { setPrefBacklighting } from "src/store/slices/keyboardBacklightingSlice";
 import { setPrefSize } from "src/store/slices/sizeSlice";
 import {
     KeyboardBacklightingTypes,
@@ -257,7 +257,7 @@ const ApplicationChrome = (props) => {
                         <SidebarParameter
                             parameterName="lighting"
                             options={KeyboardBacklightingTypes}
-                            dispatchFn={togglePrefBacklighting}
+                            dispatchFn={setPrefBacklighting}
                             isChecked={(light) =>
                                 primary_led_color.includes(light)
                             }

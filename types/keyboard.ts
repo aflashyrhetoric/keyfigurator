@@ -108,7 +108,7 @@ export interface Keyboard {
     frame_color: string;
     primary_led_color: KeyboardBacklighting | string;
     hotswappable: KeyboardHotswappable | string;
-    interfaces: KeyboardInterface[];
+    interfaces: KeyboardInterface[] | string;
     features: any[];
 
     windows_compatible: string;

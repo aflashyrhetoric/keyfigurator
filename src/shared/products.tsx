@@ -3,6 +3,7 @@
  * This is NOT a React component - don't be misled by the .tsx extension :)
  */
 // import { Tag } from "carbon-components-react"
+import { DELIMITER_TOKEN } from "src/constants";
 import { typeToLowerString, typeToString } from "src/utils/type-helpers";
 // import { UserPreferences } from "types/app"
 import {
@@ -21,8 +22,6 @@ export const applyPreferenceFilter = (
     if (productList.length === 0) {
         return [];
     }
-
-    console.log(filterKey, productList);
 
     // If there is no comparison value, skip the filtering for that property
     if (comparisonValue === null || comparisonValue.length === 0) {
@@ -107,15 +106,22 @@ export const productFilterReducer = (filterKey): Function => {
                     return false;
                 }
 
-                const { interfaces } = product;
+                const { interfaces: delimitedInterfaceStr } = product;
+
+                // Interfaces are stored as a delimited string, so let's split()
+                const interfaces = (delimitedInterfaceStr as string).split(
+                    DELIMITER_TOKEN
+                );
 
                 const cv: string[] = value.map(typeToString);
 
                 // Iterate through each of the product's interfaces
                 // If any of them match our preferences, then include it
-                return interfaces.map(typeToString).find((productInterface) => {
-                    return cv.includes(typeToString(productInterface));
-                });
+                return interfaces
+                    .map(typeToLowerString)
+                    .find((productInterface) => {
+                        return cv.includes(typeToString(productInterface));
+                    });
             };
         case "frame_color":
             return (product: Keyboard, comparisonValue: string) => {

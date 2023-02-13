@@ -8,8 +8,9 @@ import InputError from "@/Components/InputError";
 
 import { useForm, router as InertiaRouter } from "@inertiajs/react";
 import { without } from "lodash";
+import { DELIMITER_TOKEN } from "src/constants";
 
-const DELIMITER_TOKEN = "|||";
+// const DELIMITER_TOKEN = "|||";
 
 const joinArrayValues = (object, keys) => {
     const withJoinedValues = { ...object };
