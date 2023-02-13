@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { Modal } from "carbon-components-react";
 import ProductCard from "src/configurator/ProductCard";
-import PageContent from "templates/page-content";
 import { Keyboard, KeyboardSizes } from "types/keyboard";
 
 import { setPrefSize } from "src/store/slices/sizeSlice";
@@ -41,20 +39,75 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
     // return "hi";
 
     return (
-        <div className="grid grid-cols-3 gap-8 p-4 sm:ml-64">
-            {products.length === 0 && "Select a size to get started"}
-            {products &&
-                products.map((p) => (
-                    <ProductCard
-                        key={p.full_title}
-                        product={p}
-                        onClick={() => {}}
-                        // onClick={() => {
-                        //     setHighlightedProduct(p);
-                        //     setModalOpen(true);
-                        // }}
-                    />
-                ))}
+        <div>
+            <div className="flex p-4 border-b-2 sm:ml-64">
+                <div className="items-center justify-center min-h-1 px-2 border-r-2">
+                    <span className="text-xs font-bold mr-1">
+                        available switch types
+                    </span>
+                    <div className="flex">
+                        <div className="font-xs text-small-caps mr-2">
+                            <input className="mr-1" type="checkbox" />
+                            <span>linear</span>
+                        </div>
+                        <div className="font-xs text-small-caps mr-2">
+                            <input className="mr-1" type="checkbox" />
+                            <span>clicky</span>
+                        </div>
+                        <div className="font-xs text-small-caps">
+                            <input className="mr-1" type="checkbox" />
+                            <span>tactile</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="items-center justify-center min-h-1 px-2 border-r-2">
+                    <span className="text-xs font-bold mr-1">colorways</span>
+                    <div className="flex">
+                        <div className="font-xs text-small-caps mr-2">
+                            <input className="mr-1" type="checkbox" />
+                            <span>white</span>
+                        </div>
+                        <div className="font-xs text-small-caps mr-2">
+                            <input className="mr-1" type="checkbox" />
+                            <span>blue</span>
+                        </div>
+                        <div className="font-xs text-small-caps">
+                            <input className="mr-1" type="checkbox" />
+                            <span>purple</span>
+                        </div>
+                    </div>
+                </div>
+                <div className="items-center justify-center min-h-1 px-2 border-r-2">
+                    <span className="text-xs font-bold mr-1">
+                        connections / ports
+                    </span>
+                    <div className="flex">
+                        <div className="font-xs text-small-caps mr-2">
+                            <input className="mr-1" type="checkbox" />
+                            <span>wired + wireless</span>
+                        </div>
+                        <div className="font-xs text-small-caps mr-2">
+                            <input className="mr-1" type="checkbox" />
+                            <span>wired only</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="grid grid-cols-3 lg: grid-cols-4 gap-8 p-4 sm:ml-64">
+                {products.length === 0 && "Select a size to get started"}
+                {products &&
+                    products.map((p) => (
+                        <ProductCard
+                            key={p.full_title}
+                            product={p}
+                            onClick={() => {}}
+                            // onClick={() => {
+                            //     setHighlightedProduct(p);
+                            //     setModalOpen(true);
+                            // }}
+                        />
+                    ))}
+            </div>{" "}
         </div>
     );
 };

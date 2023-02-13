@@ -24,7 +24,7 @@ const ProductCard: React.FC<Props> = ({ product, onClick }: Props) => {
 
     const imgSrc = imgPath(img_path);
 
-    const test = false;
+    const test = true;
 
     return (
         <div className="max-w-sm">
@@ -38,13 +38,13 @@ const ProductCard: React.FC<Props> = ({ product, onClick }: Props) => {
                 </a>
                 <div className="p-5">
                     <a href="#">
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
                             {brand} - {product_name}
                         </h5>
                     </a>
-                    <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-fit">
+                    {/* <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 max-h-fit">
                         {product_description}
-                    </p>
+                    </p> */}
                     <a
                         href="#"
                         className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
