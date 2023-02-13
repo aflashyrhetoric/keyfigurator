@@ -2,7 +2,7 @@ import { useState } from "react";
 import Products from "./products.json";
 import { Head } from "@inertiajs/react";
 
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import AuthenticatedAdminLayout from "@/Layouts/AuthenticatedAdminLayout";
 import PrimaryButton from "@/Components/PrimaryButton";
 import InputError from "@/Components/InputError";
 
@@ -147,7 +147,7 @@ const AdminIndex = ({ auth, errors, uploadedState, uploadedData }) => {
     };
 
     return (
-        <AuthenticatedLayout
+        <AuthenticatedAdminLayout
             auth={auth}
             errors={errors}
             header={
@@ -207,7 +207,7 @@ const AdminIndex = ({ auth, errors, uploadedState, uploadedData }) => {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </AuthenticatedAdminLayout>
     );
 };
 

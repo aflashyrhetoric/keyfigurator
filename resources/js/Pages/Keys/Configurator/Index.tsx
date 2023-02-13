@@ -28,11 +28,11 @@ export default function Configurator({ products, auth, errors }) {
         <AuthenticatedLayout
             auth={auth}
             errors={errors}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Configurator
-                </h2>
-            }
+            // header={
+            //     <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+            //         Configurator
+            //     </h2>
+            // }
         >
             <Head title="Dashboard" />
             {viewMap[activeView]}

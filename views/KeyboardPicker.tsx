@@ -41,7 +41,7 @@ const KeyboardPicker = ({ products, navigate, prefs = {} }: PickerProps) => {
     // return "hi";
 
     return (
-        <div className="flex flex-row flex-wrap">
+        <div className="grid grid-cols-3 gap-8 p-4 sm:ml-64">
             {products.length === 0 && "Select a size to get started"}
             {products &&
                 products.map((p) => (
